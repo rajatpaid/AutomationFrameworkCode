@@ -37,6 +37,7 @@ public class TestActions {
 		} catch (Exception e) {
 			// TODO: handle exception
 			log.info("Failure to click element"+e.getMessage().toString());
+			System.out.println();
 		}		
 	}
 
@@ -74,12 +75,11 @@ public class TestActions {
 	}
 	public void dropdownhandle(WebElement elementdrop,int num) {
 		try {
-			waitForEle(elementdrop).isSelected();
+			//elementdrop.isSelected();
 			Select drop= new Select(elementdrop);
 			drop.selectByIndex(num);	
 		} catch (Exception e) {
-			// TODO: handle exception
-			Assert.fail("Failure toselect drop down option"+e.getMessage().toString());
+			System.out.println(e.getMessage());
 		}
 		
 

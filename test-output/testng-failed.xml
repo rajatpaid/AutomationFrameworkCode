@@ -5,8 +5,8 @@
     <classes>
       <class name="com.product_logistic_friegt_forwarding.Producr_Frieght_Adda_Scenarios">
         <methods>
-          <include name="verifyCreateChageUnit"/>
           <include name="tearDown"/>
+          <include name="verifyUpdateExistingAirlineDetails"/>
           <include name="initializeChrome"/>
         </methods>
       </class> <!-- com.product_logistic_friegt_forwarding.Producr_Frieght_Adda_Scenarios -->

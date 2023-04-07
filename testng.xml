@@ -2,11 +2,24 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
 <suite name="Suite">
-  
-  <test  name="Test">
-    <classes>
-      <class name="com.product_logistic_friegt_forwarding.Producr_Frieght_Adda_Scenarios"/> 
-    </classes>
-  </test> <!-- Test -->
-  
+	<groups>
+		<run>
+			<include name="smoke"></include>
+			<include name="regression"></include>
+		</run>
+	</groups>
+	<test name="Test" enabled="true">
+		<classes>
+			<class
+				name="com.product_logistic_friegt_forwarding.Producr_Frieght_Adda_Scenarios">
+				<methods>
+					<include name="verifyAdminLoginFunctionality" />
+					<include name="verifyCreateAirline" />
+					<include name="verifyAirlineHomePageDiaplayed" />
+					<include name="verifyAirlineCreateFiledsDisplayed" />
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+
 </suite> <!-- Suite -->

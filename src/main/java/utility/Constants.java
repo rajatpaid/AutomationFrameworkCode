@@ -27,6 +27,6 @@ public class Constants {
      public static final String  chargetypename = "charge";
      public static final String  chargeunitname = "charge";
      public static final String  chargeunitcode = "charge8";
-     public static final String  servicetax = "Service Tax";
-     public static final String  servicetaxdescription = "this tax related to service tax";
+     public static final String  taxtype = "Service Tax";
+     public static final String  taxtypedescription = "this tax related to service tax";
 }

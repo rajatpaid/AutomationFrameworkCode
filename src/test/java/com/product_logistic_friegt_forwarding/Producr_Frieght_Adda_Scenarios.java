@@ -1,6 +1,7 @@
 package com.product_logistic_friegt_forwarding;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -15,7 +16,7 @@ import comfssdomainpageobjects.ChargeUnitObjects;
 import comfssdomainpageobjects.MasterModuleObject;
 import comfssdomainpageobjects.ServiceTypeObjects;
 import comfssdomainpageobjects.SignInPageObjects;
-
+import comfssdomainpageobjects.TaxTypePageObjects;
 import product_friegt_basepackage.TestBase;
 import utility.Constants;
 import utility.ExpectedValue;
@@ -29,6 +30,7 @@ public class Producr_Frieght_Adda_Scenarios extends TestBase{
 	public ServiceTypeObjects service;
 	public ChargeTypeObjects charge;
 	public ChargeUnitObjects unit;
+	public TaxTypePageObjects tax;
 	Logger log = Logger.getLogger(Producr_Frieght_Adda_Scenarios.class);
 
 	/*
@@ -62,12 +64,121 @@ public class Producr_Frieght_Adda_Scenarios extends TestBase{
 		Assert.assertEquals(ExpectedValue.companyname,airline.isCompanyNameDisplayed());
 	}
 	
+	@Test(priority=2,description="This testcase verifies airline home page displayed ",enabled=false)
+	public void verifyAirlineHomePageDiaplayed() {
+		adminLogin();
+		clickOnMasterModule();
+		airline=new AirLinePageObject(driver);
+		airline.clickOnAirlineModule();
+		Assert.assertEquals(ExpectedValue.createnewtext,airline.isCreateNewOptionDispleyed());
+		Assert.assertEquals(ExpectedValue.airlinestext,airline.isAilinesTextDispleyed());
+		Assert.assertEquals(ExpectedValue.filtertext,airline.isExportAsOtionDispleyed());
+	}
+	@Test(description="This testcase verifies airline create page displayed ",enabled=false)
+	public void verifyAirlineCreateFiledsDisplayed() {
+		adminLogin();
+		clickOnMasterModule();
+		airline=new AirLinePageObject(driver);
+		airline.clickOnAirlineModule();
+		airline.clickOnCreateNew();
+		Assert.assertEquals(ExpectedValue.airlinenamelabel,airline.isNameLabelDisplayed());
+		Assert.assertEquals(ExpectedValue.airlineiatalabel,airline.isIataLabelDisplayed());
+		Assert.assertEquals(ExpectedValue.airlineiacolabel,airline.isIcaoLabelDisplayed());
+		Assert.assertEquals(ExpectedValue.countrylabel,airline.isCountryLabelDisplayed());
+	}
+	@Test(enabled=false)
+	public void verifyAdminNavigatesFromAilinepageToMastaerPage() {
+		adminLogin(); 
+		clickOnMasterModule();
+		airline=new AirLinePageObject(driver);
+		airline.clickOnAirlineModule();
+		airline.clickOnCreateNew();
+		airline.clickOnMasterLink();
+		Assert.assertEquals(ExpectedValue.admincardtext,airline.isAdminCardTextDisplayed());
+	}
+	@Test(enabled=false)
+	public void verifyAdminNavigatesFromAirlineCreatePageToAirlinesPage() {
+		adminLogin(); 
+		clickOnMasterModule();
+		airline=new AirLinePageObject(driver);
+		airline.clickOnAirlineModule();
+		airline.clickOnCreateNew();
+		airline.clickOnAirlinesLink();
+		Assert.assertEquals(ExpectedValue.airlinestext,airline.isAilinesTextDispleyed());
+		Assert.assertEquals(ExpectedValue.createnewtext,airline.isCreateNewOptionDispleyed());
+		Assert.assertEquals(ExpectedValue.airlinestext,airline.isAilinesTextDispleyed());
+		Assert.assertEquals(ExpectedValue.filtertext,airline.isExportAsOtionDispleyed());
+	}
+	@Test(enabled=false)
+	public void verifySaveButtonFunctionality() {
+		adminLogin(); 
+		clickOnMasterModule();
+		airline=new AirLinePageObject(driver);
+		airline.clickOnAirlineModule();
+		airline.clickOnCreateNew();
+		airline.enterAirlneDetails(Constants.airlinename, Constants.airlineiata,Constants.airlineicao);	 
+		Assert.assertEquals(ExpectedValue.savebuttontext,airline.isSaveButtonTextDisplayed());
+		Assert.assertEquals(ExpectedValue.airlinedetails,airline.isAirLineDetailsDisplayed());
+		Assert.assertEquals(ExpectedValue.airlinenametext,airline.isIndigiAirlLineDisplayed());
+		Assert.assertEquals(ExpectedValue.companyname,airline.isCompanyNameDisplayed());
+	}
+	@Test(enabled=false)
+	public void verifyDownloadAirlinesDetialsInExcelFormat() throws InterruptedException {
+		adminLogin(); 
+		clickOnMasterModule();
+		airline=new AirLinePageObject(driver);
+		airline.clickOnAirlineModule();
+		Thread.sleep(3000);
+		airline.clickOnExportDropdown();
+		Thread.sleep(3000);
+		airline.clickOnExcelFormat();
+	}
+	@Test(enabled=false)
+	public void verifyDownloadAirlinesDetialsInCsvFormat() throws InterruptedException {
+		adminLogin(); 
+		clickOnMasterModule();
+		airline=new AirLinePageObject(driver);
+		airline.clickOnAirlineModule();
+		Thread.sleep(3000);
+		airline.clickOnExportDropdown();
+		airline.clickOnCsvFormat();	
+	}
+	
+	@Test(enabled=false)
+	public void verifyUpdateDetailsPageDisplayed() throws InterruptedException {
+		adminLogin(); 
+		clickOnMasterModule();
+		airline=new AirLinePageObject(driver);
+		airline.clickOnAirlineModule();
+		Thread.sleep(3000);
+		airline.clickOnEditIcon();
+		airline.clickOnConformationPopUp();
+		Assert.assertEquals(ExpectedValue.airlinrupadteText,airline.isAirLineUpdateTextDisplayed());
+		Assert.assertEquals(ExpectedValue.updatebutton,airline.isUpadateButtonDisplayed());
+		Assert.assertEquals(ExpectedValue.companyname,airline.isCompanyNameDisplayed());
+	}
+	@Test
+	public void verifyUpdateExistingAirlineDetails() throws InterruptedException {
+		adminLogin(); 
+		clickOnMasterModule();
+		airline=new AirLinePageObject(driver);
+		airline.clickOnAirlineModule();
+		Thread.sleep(3000);
+		airline.clickOnEditIcon();
+		airline.clickOnConformationPopUp();
+		airline.enterIATACode(Constants.airlineiata);
+		airline.clickOnUpdateButton();
+		//Assert.assertEquals(ExpectedValue.airlinrupadteText,airline.isAirLineUpdateTextDisplayed());
+		Assert.assertEquals(ExpectedValue.updatebutton,airline.isUpadateButtonDisplayed());
+		Assert.assertEquals(ExpectedValue.companyname,airline.isCompanyNameDisplayed());
+		
+	}
 	/*
 	 * This test case verifies create a branch
 	 * @Parameters:
 	 * @return: 
 	 */
-	@Test(priority=2,description="This testcase verifies create a branches ",enabled=false)
+	@Test(priority=3,description="This testcase verifies create a branches ",enabled=false)
 	public void verifyCreateBranches() throws InterruptedException {
 		adminLogin();
 		clickOnMasterModule();
@@ -78,14 +189,15 @@ public class Producr_Frieght_Adda_Scenarios extends TestBase{
 		Assert.assertEquals(ExpectedValue.branchdetailstext,branch.isBranchDetailsTextDisplayed());
 		Assert.assertEquals(ExpectedValue.companyname,branch.isCompanyNameDisplayed());
 		Assert.assertEquals(ExpectedValue.branchnametext,branch.isBranchNameDisplayed());
+		Assert.assertEquals(ExpectedValue.airlinenametext,airline.isIndigiAirlLineDisplayed());
 	}
 	/*
 	 * This test case verifies CreateServiceType
 	 * @Parameters:servicename,servicecode.
 	 * @return: No
 	 */
-	
-	@Test(priority=3,description="This testcase verifies create a service type ",enabled=true )
+
+	@Test(priority=4,description="This testcase verifies create a service type ",enabled=false)
 	public void verifyCreateServiceType() throws InterruptedException {
 		adminLogin();
 		clickOnMasterModule();
@@ -103,7 +215,7 @@ public class Producr_Frieght_Adda_Scenarios extends TestBase{
 	 * @Parameters:
 	 * @return: No
 	 */
-	@Test(priority=4,description="This testcase verifies create a charge type ",enabled=false)
+	@Test(priority=5,description="This testcase verifies create a charge type ",enabled=false)
 	public void veriyCreateChargeType() throws InterruptedException {
 		adminLogin();
 		clickOnMasterModule();
@@ -121,18 +233,37 @@ public class Producr_Frieght_Adda_Scenarios extends TestBase{
 	 * @Parameters:
 	 * @return: 
 	 */
-	@Test(priority=5,description="This testcase verifies create a charge unit ",enabled=false)
+	@Test(priority=6,description="This testcase verifies create a charge unit ",enabled=false)
 	public void verifyCreateChageUnit() throws InterruptedException {
 		adminLogin();
 		clickOnMasterModule();
-	    unit= new ChargeUnitObjects(driver);
-	    unit.clickOnChargeUnitFolder();
-	    unit.clickOnCreateNew();
-	    unit.enterChargeUnitDetails(Constants.chargeunitname,Constants.chargeunitcode);
+		unit= new ChargeUnitObjects(driver);
+		unit.clickOnChargeUnitFolder();
+		unit.clickOnCreateNew();
+		unit.enterChargeUnitDetails(Constants.chargeunitname,Constants.chargeunitcode);
 		Assert.assertEquals(ExpectedValue.chargeunitdetailstext,unit.isChargeUnitDetailsTextDisplayed());
 		Assert.assertEquals(ExpectedValue.chargeunitname,unit.isChargeUnitNameDisplayed());
 		Assert.assertEquals(ExpectedValue.companyname,unit.isCompanyNameDisplayed()); 
 	}
+	/*
+	 * This test case verifies create a TaxType
+	 * @Parameters:
+	 * @return: 
+	 */
+	@Test(priority=7,description="This testcase verifies create a taxtype ",enabled=false)
+	public void verifyCreateTaxType() {
+		adminLogin();
+		clickOnMasterModule();
+		tax=new TaxTypePageObjects(driver);
+		tax.clickOnTaxTypeFolder();
+		tax.clickOnCreateNewOption();
+		tax.enterTaxTypeDetails(Constants.taxtype,Constants.taxtypedescription);
+		Assert.assertEquals(ExpectedValue.companyname,unit.isCompanyNameDisplayed()); 
+		Assert.assertEquals(ExpectedValue.taxtypedetailstext,tax.isTaxTypeDetailsTextDisplayed()); 
+	}
+	
+		
+
 
 	public void clickOnMasterModule() {
 		MasterModuleObject master= new MasterModuleObject(driver);
