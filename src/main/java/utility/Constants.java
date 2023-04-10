@@ -29,4 +29,11 @@ public class Constants {
      public static final String  chargeunitcode = "charge8";
      public static final String  taxtype = "Service Tax";
      public static final String  taxtypedescription = "this tax related to service tax";
+     public static final String airlineName = "Indigo airline";
+     public static final String airlineIATA = "VMO";
+     public static final String airlineICAO = "VAM";
+     public static final String airlineAlias="";
+     public static final String airlineCallsign="";
+     public static final String airlinedetailsText = "Airline Details";
+     public static final String searchMumbaiAirlines="Mumbai Airlines";
 }
