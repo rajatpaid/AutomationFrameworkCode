@@ -47,6 +47,7 @@ public class Producr_Frieght_Adda_Scenarios extends TestBase{
     @Test(priority=0,description="This testcase verifies admin login functionality",enabled=true)
     public void verifyAdminLoginFunctionality() throws InterruptedException {
         adminLogin();
+        //
         Assert.assertEquals(signinpage.isAdminProfileNameDisplayed(),Constants.ExpectedProfilEText); 
         Assert.assertEquals(signinpage.isAdminRoleDisplayed(), Constants.ExpectedadminroleText);
         Assert.assertEquals(signinpage.isUserNameDisplayed(),Constants.ExpectedusernameText);    
