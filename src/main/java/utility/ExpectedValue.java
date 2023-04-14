@@ -46,7 +46,7 @@ public class ExpectedValue {
 	public static final String mumbaibranchtext = "Mumbai";
 	public static final String branchEditButtonLabel = "Edit";
 	public static final String branchCloseButtonLabel = "Close";
-	
+	public static final String adminCardLabel = "Admin Card";
 	
 	public static final String branchnametext = "Vijayawada";
 	

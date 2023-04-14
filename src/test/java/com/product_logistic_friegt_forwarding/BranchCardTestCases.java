@@ -20,7 +20,7 @@ public class BranchCardTestCases extends TestBase {
 		clickOnMasterModule();
 		branch = new BranchesPageObject(driver);
 		branch.clickOnBranchCard();
-	        Assert.assertEquals(ExpectedValue.createNewButtonLabel,branch.isCreateNewButtonTextDisplayed());
+	     Assert.assertEquals(ExpectedValue.createNewButtonLabel,branch.isCreateNewButtonTextDisplayed());
 		Assert.assertEquals(ExpectedValue.exportAsButtonLabel,branch.isExportAsButtonTextDisplayed());
 		Assert.assertEquals(ExpectedValue.filterButtonLabel,branch.isFilterButtonTextDisplayed());
 		Assert.assertEquals(ExpectedValue.masterlinkLabel,branch.isMasterLinkTextDisplayed());
@@ -46,6 +46,25 @@ public class BranchCardTestCases extends TestBase {
 	  Assert.assertEquals(ExpectedValue.branchAddAddressButtonLabel,branch.isBranchAddAddressButtonTextDisplayed());
 	  Assert.assertEquals(ExpectedValue.branchSaveButtonLabel,branch.isBranchSaveButtonTextDisplayed());
 	  Assert.assertEquals(ExpectedValue.branchCancelButtonLabel, branch.isBranchCancelButtonTextDisplayed()); }
+	  @Test(priority=4,description="This testcase verifies Breadcrumb",enabled= true) 
+	  public void navigateFromBranchesPageToMasterPage() { 
+	  adminLogin();
+	  clickOnMasterModule(); 
+	  branch = new BranchesPageObject(driver);
+	  branch.clickOnBranchCard(); 
+	  branch.clickOnMasterLink();
+	  Assert.assertEquals(ExpectedValue.adminCardLabel,branch.isAdminCardTextDisplayed());
+	  }
+	  
+	  @Test(priority=5,description="This testcase verifies Breadcrumb",enabled=true)
+	  public void navigateFromBranchesCreatePageToMasterPage() {
+	  adminLogin(); clickOnMasterModule();
+	  branch = new BranchesPageObject(driver);
+	  branch.clickOnBranchCard();
+	  branch.clickCreateNew();
+	  branch.clickOnMasterLink(); 
+	  Assert.assertEquals(ExpectedValue.adminCardLabel,branch.isAdminCardTextDisplayed());
+	  }
 
 public void clickOnMasterModule() {
     MasterModuleObject master= new MasterModuleObject(driver);
